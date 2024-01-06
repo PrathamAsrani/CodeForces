@@ -1,76 +1,35 @@
-#include <bits/stdc++.h>
+// https://codeforces.com/contest/1916/problem/C
 
+#include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-    int t;
-    cin >> t;
+typedef long long ll;
 
-    while (t--) {
-        int n;
-        cin >> n;
-
-        vector<int> a(n);
-        for (int i = 0; i < n; ++i) {
-            cin >> a[i];
+void fun(){
+    ll n;
+    cin >> n;
+    ll sum = 0, cntOdd = 0;
+    for(ll i = 0; i < n; i++){
+        ll num;
+        cin >> num;
+        sum += num;
+        if(num&1)
+            cntOdd++;
+        if(i == 0){
+            cout << sum << " ";
+            continue;
         }
-
-        vector<int> prefix_sums(n), remaining_numbers(n);
-
-        prefix_sums[0] = a[0];
-        remaining_numbers[0] = a[0];
-
-        for (int i = 1; i < n; ++i) {
-            prefix_sums[i] = prefix_sums[i - 1] + a[i];
-            remaining_numbers[i] = max(remaining_numbers[i - 1], a[i]);
-        }
-
-        for (int k = 1; k <= n; ++k) {
-            if (k == 1) {
-                cout << a[0] << " ";
-            } else {
-                int max_sum = prefix_sums[k - 1];
-                int max_remaining = remaining_numbers[k - 1];
-
-                if (k % 2 == 0) {
-                    cout << max_sum << " ";
-                } else {
-                    cout << max(max_sum - max_remaining, max_remaining * 2) << " ";
-                }
-            }
-        }
-
-        cout << endl;
+        ll loss = (cntOdd/3) + (cntOdd%3 == 1);
+        cout << sum-loss << " ";
     }
-
-    return 0;
+    cout << "\n";
 }
 
-
-// void fun(){
-//     int n;
-//     cin >> n;
-//     int sum = 0, odd = 0;
-//     for(int i = 0; i < n; i++){
-//         int num;
-//         cin >> num;
-//         if(num&1) odd++;
-//         sum += num;
-//         if(i == 0){
-//             cout << sum << " ";
-//             continue;
-//         }
-//         if(sum&1 && odd&1) sum--;
-//         else if(sum&1 && !(odd&1)) sum += (odd/2);
-//         cout << sum << " ";
-//     }
-//     cout << "\n";
-// }
-
-// int main(){
-//     int t;
-//     cin >> t;
-//     while(t--){
-//         fun();
-//     }
-// }
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        fun();
+    }
+    return 0;
+}
