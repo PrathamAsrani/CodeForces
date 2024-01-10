@@ -13,26 +13,28 @@ int main()
         ll n;
         cin >> n;
         vector<ll> arr(n + 1);
-        unordered_map<ll, ll> umpp;
+        unordered_map<string, ll> umpp;
         ll odd = 0, even = 0;
-        string ans = "NO\n";
-        for (int i = 1; i <= n; i++)
-            cin >> arr[i];
+        bool ans = false;
         for (int i = 1; i <= n; i++)
         {
+            cin >> arr[i];
             if (i & 1)
                 odd += arr[i];
             else
                 even += arr[i];
+            
             ll diff = even - odd;
-            if (diff == 0 || umpp[diff])
-            {
-                ans = "YES\n";
-                break;
-            }
-            umpp[diff] = i;
+            string d = to_string(diff);
+            if (diff == 0 || umpp.find(d) != umpp.end()) 
+                ans = true;
+            
+            umpp[d] = i;
         }
-        cout << ans;
+        if(ans)
+            cout << "Yes\n";
+        else 
+            cout << "NO\n";
     }
     return 0;
 }
