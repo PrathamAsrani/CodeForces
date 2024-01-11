@@ -5,29 +5,35 @@ using namespace std;
 
 #define ll long long
 
-void solve(){
-    ll n;
-    cin >> n;
-    vector<pair<ll, ll>> arr(n);
-    for(int i = 0; i < n; i++){
-        ll a, b;
+void solve() {
+    int n;	
+    long long ans = 0;
+    cin >>n;
+    map<int, int> mp;
+    vector<int> v(n);
+    for(int i = 0 ; i < n ; i++){
+        int a, b;	
         cin >> a >> b;
-        arr[i] = make_pair(a, b);
+        mp[a] = b;
+        v[i] = b;
     }
-    sort(arr.begin(), arr.end());
-    ll ans = 0;
-    for(int i = 0; i < n; i++) {
-        ll end = arr[i].second;
-        for(int j = i+1; j < n; j++){
-            if(arr[j].second <= end)
-                ans++;
-        }
+    sort(v.begin(), v.end());
+    for(auto& it : mp){
+        auto pos = lower_bound(v.begin(), v.end(), it.second);
+        ans += pos - v.begin();
+        v.erase(pos);
     }
-    cout << ans <<"\n";
+    cout << ans << '\n' ;
 }
 
-int main(){
-    ll t;
+
+int32_t main() {
+    // ios::sync_with_stdio(false);
+    // cin.tie(0);
+    int t = 1;
     cin >> t;
-    while(t--) solve();
+    while (t--) {
+        solve();
+    }
+    return 0;
 }
