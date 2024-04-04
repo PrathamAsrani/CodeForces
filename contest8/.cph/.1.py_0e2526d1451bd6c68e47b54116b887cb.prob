@@ -1,0 +1,1 @@
+{"name":"Local: 1","url":"d:\\CodeForces\\contest8\\1.py","tests":[{"id":1707835614172,"input":"5\n24\n70\n3\n55\n48\n","output":"aav\nrzz\naaa\nczz\nauz\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CodeForces\\contest8\\1.py","group":"local","local":true}
