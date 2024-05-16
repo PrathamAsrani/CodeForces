@@ -15,15 +15,17 @@ int main()
 
 void solve()
 {
-    ll n, k, prev = 0, cnt = 0;
-    cin >> n >> k;
-    bool f = true;
+    ll n, k;
+    cin >> n >> k; 
+    ll ans = 0, prev = 0;
     for(ll i = 0; i < n; i++){
-        int num;
+        ll num;
         cin >> num;
-        if(prev > num) f = false;
+        if(i == n-1){
+            ans = max(ans, (k - num)*2);
+        }
+        ans = max(ans, num - prev);
         prev = num;
     }
-    if(!f && k == 1) cout << "No\n";
-    else cout << "Yes\n";
+    cout << ans << "\n";
 }   
